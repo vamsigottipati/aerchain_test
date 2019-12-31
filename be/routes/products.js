@@ -17,6 +17,8 @@ router.post('/addProduct', (req, res) => {
     // add if not present or else ask to increase quantity
     addProduct(req.body).then(r => {
         res.send(r)
+    }).catch(err => {
+        res.send(err)
     })
 });
 
