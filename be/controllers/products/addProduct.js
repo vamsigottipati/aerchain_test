@@ -119,7 +119,7 @@ const addProduct = (params) => {
                 if(params.force) {
                     productModel.find({name: params.name, category: params.category, brand: params.brand, price: params.price}, (err, existingEntry) => {
                         if(existingEntry.length == 1){
-                            temp = existingEntry
+                            temp = existingEntry[0]
                             temp.quantity = temp.quantity + 1
                             productModel.findByIdAndUpdate(temp._id, temp, {new: true}, (err_u, m) => {
                                 if(!err_u) {
@@ -262,44 +262,3 @@ const addProduct = (params) => {
 }
 
 module.exports = addProduct
-
-
-
-
-
-
-
-// docs.forEach(el => {
-                //     if(el.name == params.name && el.category == params.category && el.price == params.price && el.brand == params.brand) {
-                //         if(params.force) {
-                //             tempEl = el
-                //             tempEl.quantity = tempEl.quantity+1
-                //             productModel.findByIdAndUpdate(el.id, tempEl, {new: true}, (err_u, m) => {
-                //                 if(!err) {
-                //                     var r = {
-                //                         status: true,
-                //                         msg: "Updated quantity"
-                //                     }
-                //                     resolve(r)
-                //                 }else {
-                //                     var r = {
-                //                         status: false,
-                //                         msg: err
-                //                     }
-                //                     reject(r)
-                //                 }
-                //             })
-                //         } else {
-                //             var r = {
-                //                 status: false,
-                //                 msg: "Product already Existing"
-                //             }
-                //             reject(r)
-                //         }
-                //     } else {
-                //         // check if category is valid
-                //         // if category is valid then add product
-                //         // if category is not valid && force == true then add add category
-                //         // else return false
-                //     }
-                // })
