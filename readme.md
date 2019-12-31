@@ -1,10 +1,17 @@
 ## Start Backend server
 
 ```sh
-cd be # go to directory
-npm i # install required
+cd be              # go to directory
+npm i              # install required
 
-if nodemon exists on local machine ? nodemon app.js : npm i -g nodemon; nodemon app.js
+# if nodemon exists on local machine
+
+nodemon app.js 
+
+# if nodemon is not present
+
+npm i -g nodemon
+nodemon app.js 
 
 ```
 
