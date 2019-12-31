@@ -6,8 +6,24 @@ mongoose.connect("mongodb://localhost:27017/aerchain_test", {
 
 
 const productSchema = new mongoose.Schema({
-    value: {
-        type: Map,
+    name: {
+        type: String,
+        required: true
+    },
+    category: {
+        type: String,
+        required: true
+    },
+    brand: {
+        type: String,
+        required: true
+    },
+    price: {
+        type: Number,
+        required: true
+    },
+    quantity: {
+        type: Number,
         required: true
     }
 })
