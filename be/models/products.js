@@ -7,7 +7,7 @@ mongoose.connect("mongodb://localhost:27017/aerchain_test", {
 
 const productSchema = new mongoose.Schema({
     value: {
-        type: mongoose.Schema.Types.Mixed,
+        type: Map,
         required: true
     }
 })
