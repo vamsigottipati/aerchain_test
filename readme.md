@@ -24,17 +24,56 @@ be
 ├── package.json
 ├── node_modules
 ├── controllers
-│   └── auth
-│       ├── login.js
-│       └── signup.js
-│   └── products
-│       ├── addProduct.js
-│       ├── getBrand.js
-│       └── getCategory.js
+    └── auth
+        ├── login.js
+        └── signup.js
+    └── products
+        ├── addProduct.js
+        ├── getBrand.js
+        └── getCategory.js
 ├── models
-│   ├── products.js
-│   └── users.js
+    ├── products.js
+    └── users.js
 ├── routes
-│   └── products.js
+    └── products.js
 
 ```
+
+## Start Frontend server (React)
+
+```sh
+cd fe              # go to directory
+npm i              # install required
+npm start          # start server 
+
+```
+
+Structure:
+
+```sh
+
+fe
+├── package.json
+├── yarn.lock
+├── node_modules
+├── public
+    ├── favicon.ico
+    ├── index.html
+    ├── logo.png
+    ├── manifest.json
+    └── robots.txt
+├── src
+    ├── App.css
+    ├── App.js
+    ├── App.test.js
+    ├── index.css
+    ├── index.js
+    ├── logo.svg
+    ├── setupTests.js
+    └── serviceWorker.js
+
+```
+
+
+More details at fe/README.md
+
