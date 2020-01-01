@@ -29,13 +29,12 @@ be
 │       └── signup.js
 │   └── products
 │       ├── addProduct.js
-│       ├── productSearch.js
-│       └── checkStatus.js
+│       ├── getBrand.js
+│       └── getCategory.js
 ├── models
 │   ├── products.js
 │   └── users.js
 ├── routes
-│   ├── auth.js
 │   └── products.js
 
 ```
