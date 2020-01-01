@@ -27,7 +27,9 @@ const addProduct = (params) => {
                                     price: params.price,
                                     quantity: params.quantity,
                                     brand: params.brand,
-                                    category: params.category
+                                    category: params.category,
+                                    description: params.description,
+                                    img: params.img
                                 })
                                 p.save()
                                 var r = {
@@ -56,7 +58,9 @@ const addProduct = (params) => {
                                                 price: params.price,
                                                 quantity: params.quantity,
                                                 brand: params.brand,
-                                                category: params.category
+                                                category: params.category,
+                                                description: params.description,
+                                                img: params.img
                                             })
                                             p.save()
                                             var r = {
@@ -155,7 +159,9 @@ const addProduct = (params) => {
                                         price: params.price,
                                         quantity: params.quantity,
                                         brand: params.brand,
-                                        category: params.category
+                                        category: params.category,
+                                        description: params.description,
+                                        img: params.img
                                     })
                                     p.save()
                                     var r = {
@@ -183,7 +189,9 @@ const addProduct = (params) => {
                                                 price: params.price,
                                                 quantity: params.quantity,
                                                 brand: params.brand,
-                                                category: params.category
+                                                category: params.category,
+                                                description: params.description,
+                                                img: params.img
                                             })
                                             p.save()
                                             var r = {
@@ -240,7 +248,9 @@ const addProduct = (params) => {
                                                 price: params.price,
                                                 quantity: params.quantity,
                                                 brand: params.brand,
-                                                category: params.category
+                                                category: params.category,
+                                                description: params.description,
+                                                img: params.img
                                             })
                                             p.save()
                                             var r = {

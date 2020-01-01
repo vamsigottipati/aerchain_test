@@ -1,38 +1,53 @@
-.App {
-  text-align: center;
+@import '~antd/dist/antd.css';
+
+.App{
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.navbar{
+    width: 100vw;
+    height: 8vh;
+    font-family: "Brandon Grotesque Medium";
+    display: flex;
+    flex-direction: row;
+    background: white;
+    justify-content: center;
+    align-items: center;
+    -webkit-box-shadow: 0 12px 10px -12px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 12px 10px -12px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 0px;
+    left: 0px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.logo {
+    padding: 0px;
+    margin: 0px;
+    font-size: 19px;
+    color: rgb(26, 2, 36);
+    margin-right: auto;
+    margin-left: 5vw;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.navbarItems {
+    padding: 0px;
+    margin: 0px;
+    font-size: 19px;
+    color: rgb(26, 2, 36);
 }
 
-.App-link {
-  color: #61dafb;
+.shoppingMain {
+    display: flex;
+    flex-direction: row;
+    height: 92vh;
+    margin-top: 8vh;
+    overflow: auto;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.heading {
+    padding: 0px;
+    margin: 0px;
+    font-size: 19px;
+    color: rgb(0, 0, 0, 0.65);
+    font-family: "Brandon Grotesque Medium";
 }
