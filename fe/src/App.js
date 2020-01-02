@@ -8,7 +8,6 @@ import addProduct from "./components/addProduct"
 
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
-
 const App = () => (
   // get list of all products and show them here
 

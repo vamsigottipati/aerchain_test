@@ -5,9 +5,14 @@ var productModel = require("../models/products")
 var addProduct = require("../controllers/products/addProduct")
 var categoryModel = require("../models/category")
 
-router.get('/', (req, res, next) => {
+router.get('/getProducts', (req, res, next) => {
     productModel.find({}, function (err, docs) {
-        console.log(docs)
+        res.send(docs)
+    });
+});
+
+router.get('/getCategories', (req, res) => {
+    categoryModel.find({}, function (err, docs) {
         res.send(docs)
     });
 });
@@ -21,7 +26,8 @@ router.post('/addProduct', (req, res) => {
 });
 
 router.post('/addCategories', (req, res) => {
-    if(req.body.treeStruct.length == 0) {
+    console.log(req.body)
+    if(req.body.treeStruct === "" || req.body.treeStruct == null) {
         categoryModel.find({name: req.body.name}, (err, docs) => {
             if(docs.length == 0) {
                 var d = new categoryModel({
@@ -34,12 +40,14 @@ router.post('/addCategories', (req, res) => {
                     status: true,
                     msg: "Category Added"
                 }
+                console.log(req.body, r)
                 res.send(r)
             } else {
                 var r = {
                     status: false,
                     msg: "Category Already Exists"
                 }
+                console.log(req.body, r)
                 res.send(r)
             }
         })
@@ -55,7 +63,7 @@ router.post('/addCategories', (req, res) => {
                             status = false
                         } else {
                             if(index+1 < parents.length) {
-                                if(!docs1.children.contains(parents[index+1])) {
+                                if(!docs1[0].children.includes(parents[index+1])) {
                                     status = false
                                 }
                             }
@@ -69,13 +77,14 @@ router.post('/addCategories', (req, res) => {
                         console.log(docs2)
                         if(docs2.length == 1) {
                             var temp = docs2[0]
-                            temp.children.push(parents[parents.length-1])
+                            temp.children.push(req.body.name)
                             categoryModel.findByIdAndUpdate(docs2[0]._id, temp, {new: true}, (err_u, m)=> {
                                 if(err_u) {
                                     var r = {
                                         status: false,
                                         msg: err_u
                                     }
+                                    console.log(req.body, r)
                                     res.send(r)
                                 } else {
                                     var d = new categoryModel({
@@ -88,6 +97,7 @@ router.post('/addCategories', (req, res) => {
                                         status: true,
                                         msg: "Added category and updated parent"
                                     }
+                                    console.log(req.body, r)
                                     res.send(r)
                                 }
                             })
@@ -96,6 +106,7 @@ router.post('/addCategories', (req, res) => {
                                 status: false,
                                 msg: "Error with database entries"
                             }
+                            console.log(req.body, r)
                             res.send(r)
                         }
                     })
@@ -106,6 +117,7 @@ router.post('/addCategories', (req, res) => {
                     status: false,
                     msg: "category already existing"
                 }
+                console.log(req.body, r)
                 res.send(r)
             }
         })
