@@ -77,34 +77,16 @@ class addProduct extends Component {
           })
         }).then(r => r.json()).then(resp => {
           console.log(resp)
+          if(resp.status == true) {
+            document.getElementById("mainCont").style.display = "none"
+            document.getElementById("loader").style.display = "none"
+            document.getElementById("afterMsg").style.display = "flex"
+          } else {
+            alert(resp.msg)
+            document.getElementById("mainCont").style.display = "block"
+            document.getElementById("loader").style.display = "none"
+          }
         })
-        // fetch('http://localhost:5000/addProduct', {
-        //   method: 'POST',
-        //   headers: {
-        //     'Content-Type':'application/json'
-        //   },
-        //   body: JSON.stringify({
-        //     "name": document.getElementById("productName").value,
-        //     "category": s,
-        //     "brand": document.getElementById("productBrand").value,
-        //     "price": document.getElementById("productPrice").value,
-        //     "force": false,
-        //     "quantity": document.getElementById("productQuantity").value,
-        //     "discription": document.getElementById("productDescription").value,
-        //     "img": "No img",
-        //   })
-        // }).then(r => r.json()).then(resp => {
-        //   console.log(resp)
-        //   if(resp.status == true) {
-        //     document.getElementById("mainCont").style.display = "none"
-        //     document.getElementById("loader").style.display = "none"
-        //     document.getElementById("afterMsg").style.display = "flex"
-        //   } else {
-        //     alert(resp.msg)
-        //     document.getElementById("mainCont").style.display = "block"
-        //     document.getElementById("loader").style.display = "none"
-        //   }
-        // })
       }
     } else {
       alert("Enter all the details")
