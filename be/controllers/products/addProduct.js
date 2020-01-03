@@ -1,9 +1,39 @@
 var categoryModel = require("../../models/category")
 var productModel = require("../../models/products")
+var validateCategory = require("./validateCategory")
 
 const addProduct = (params) => {
     return new Promise((resolve, reject) => {
-        resolve("okok")
+        productModel.find({"name": params.name}, (err, docs) => {
+            if(docs.length > 0) {
+                reject({
+                    "status": false,
+                    "msg": "Product already existing"
+                })
+            } else {
+                // validate category
+                validateCategory(params.category).then(r => {
+                    console.log(r)
+                    // add product
+                    var d = new productModel({
+                        "name": params.name,
+                        "description": params.description,
+                        "price": params.price,
+                        "quantity": params.quantity,
+                        "category": params.category,
+                        "brand": params.brand
+                    })
+                    d.save()
+                    resolve({
+                        "status": true,
+                        "msg": "Product Added"
+                    })
+                }).catch(e => {
+                    console.log(e)  
+                    reject(e)       
+                })
+            }
+        })
     })
 }
 

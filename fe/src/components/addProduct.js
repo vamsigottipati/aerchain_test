@@ -72,7 +72,7 @@ class addProduct extends Component {
             "price": document.getElementById("productPrice").value,
             "force": false,
             "quantity": document.getElementById("productQuantity").value,
-            "discription": document.getElementById("productDescription").value,
+            "description": document.getElementById("productDescription").value,
             "img": "No img",
           })
         }).then(r => r.json()).then(resp => {

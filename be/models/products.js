@@ -32,7 +32,8 @@ const productSchema = new mongoose.Schema({
     },
     img: {
         type: String,
-        required: true
+        required: true,
+        default: "https://firebasestorage.googleapis.com/v0/b/myownproject-7c0c9.appspot.com/o/images%2F1.jpg?alt=media&token=9c0d59d9-9dd8-4ee9-976f-9f0567e28c43"
     }
 })
 
