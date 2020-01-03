@@ -114,10 +114,49 @@
 .Home {
     display: flex;
     flex-direction: row;
-    height: 100vh;
-    margin-top: 0vh;
+    height: auto;
+    margin-top: 8vh;
     overflow: auto;
     z-index: 99;
+}
+
+.products{
+    display: none;
+    flex-direction: row;
+    align-content: flex-start;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.heading {
+    font-size: 18px;
+}
+
+.searchBar {
+    width: 25vw;
+    margin-top: 40px;
+    /* margin-bottom: 40px; */
+}
+
+.productsCont {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+
+.productCard {
+    width: 300px;
+    height: auto;
+    border: 1px solid #eee;
+    background: #fcfbfb;
+    margin: 20px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
 }
 
 /* home end */
