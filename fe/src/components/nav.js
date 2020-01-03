@@ -9,13 +9,13 @@ const Nav = () => (
       <Link to="/" className="logo">
        BrandName
       </Link>
-      <Link to="/" style={{marginRight: '8vw', cursor: 'pointer', fontSize: '16px', color: 'rgba(0, 0, 0, 0.65)'}} className="navbarItems">
+      <Link to="/" style={{marginRight: '50px', cursor: 'pointer', fontSize: '16px', color: 'rgba(0, 0, 0, 0.65)'}} className="navbarItems">
         Home
       </Link>
-      <Link to="/addProduct" style={{marginRight: '8vw', cursor: 'pointer', fontSize: '16px', color: 'rgba(0, 0, 0, 0.65)'}} className="navbarItems">
+      <Link to="/addProduct" style={{marginRight: '50px', cursor: 'pointer', fontSize: '16px', color: 'rgba(0, 0, 0, 0.65)'}} className="navbarItems">
         Add Products
       </Link>
-      <Link to="/addCategory" style={{marginRight: '10vw', cursor: 'pointer', fontSize: '16px', color: 'rgba(0, 0, 0, 0.65)'}} className="navbarItems">
+      <Link to="/addCategory" style={{marginRight: '100px', cursor: 'pointer', fontSize: '16px', color: 'rgba(0, 0, 0, 0.65)'}} className="navbarItems">
         Add Categories
       </Link>
     </div>
