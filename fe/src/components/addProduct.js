@@ -56,7 +56,10 @@ class addProduct extends Component {
       }
       if(s === "") {
         alert("Select a Category")
+        document.getElementById("mainCont").style.display = "block"
+        document.getElementById("loader").style.display = "none"
       } else {
+        console.log("came here")
         fetch('http://localhost:5000/addProduct', {
           method: 'POST',
           headers: {
@@ -74,16 +77,34 @@ class addProduct extends Component {
           })
         }).then(r => r.json()).then(resp => {
           console.log(resp)
-          if(resp.status == true) {
-            document.getElementById("mainCont").style.display = "none"
-            document.getElementById("loader").style.display = "none"
-            document.getElementById("afterMsg").style.display = "flex"
-          } else {
-            alert(resp.msg)
-            document.getElementById("mainCont").style.display = "block"
-            document.getElementById("loader").style.display = "none"
-          }
         })
+        // fetch('http://localhost:5000/addProduct', {
+        //   method: 'POST',
+        //   headers: {
+        //     'Content-Type':'application/json'
+        //   },
+        //   body: JSON.stringify({
+        //     "name": document.getElementById("productName").value,
+        //     "category": s,
+        //     "brand": document.getElementById("productBrand").value,
+        //     "price": document.getElementById("productPrice").value,
+        //     "force": false,
+        //     "quantity": document.getElementById("productQuantity").value,
+        //     "discription": document.getElementById("productDescription").value,
+        //     "img": "No img",
+        //   })
+        // }).then(r => r.json()).then(resp => {
+        //   console.log(resp)
+        //   if(resp.status == true) {
+        //     document.getElementById("mainCont").style.display = "none"
+        //     document.getElementById("loader").style.display = "none"
+        //     document.getElementById("afterMsg").style.display = "flex"
+        //   } else {
+        //     alert(resp.msg)
+        //     document.getElementById("mainCont").style.display = "block"
+        //     document.getElementById("loader").style.display = "none"
+        //   }
+        // })
       }
     } else {
       alert("Enter all the details")
@@ -110,7 +131,7 @@ class addProduct extends Component {
           <Input size="large" placeholder="Description" id="productDescription" style={{margin: '0px'}} />
 
           <p style={{margin: '0px', padding: '0px', paddingBottom: '20px',paddingTop: '50px', fontFamily: 'Brandon Grotesque Medium', fontSize: '20px'}}>Set a Price</p> 
-          <Input size="large" min="0" type="number" placeholder="Price of the product" id="productPrice" addonAfter={<i class="fas fa-rupee-sign"></i>} style={{margin: '0px'}} />
+          <Input size="large" min="0" type="number" placeholder="Price of the product" id="productPrice" addonAfter={<i className="fas fa-rupee-sign"></i>} style={{margin: '0px'}} />
 
           <p style={{margin: '0px', padding: '0px', paddingBottom: '20px',paddingTop: '50px', fontFamily: 'Brandon Grotesque Medium', fontSize: '20px'}}>Give a Brand</p> 
           <Input size="large" placeholder="Brand" id="productBrand" style={{margin: '0px'}} />
