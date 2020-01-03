@@ -1,82 +1,11 @@
 @import '~antd/dist/antd.css';
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 
-.App{
-    /* font-family: 'Open Sans', sans-serif; */
+
+.App {
     font-family: 'Brandon Grotesque Medium';
-}
-
-.Nav {
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 100vw;
-    height: 8vh;
-    z-index: 100;
-}
-
-.Home {
-    display: flex;
-    flex-direction: row;
     height: 100vh;
-    margin-top: 0vh;
     overflow: auto;
-    z-index: 99;
-}
-
-.navbar{
-    width: 100vw;
-    height: 8vh;
-    font-family: "Brandon Grotesque Medium";
-    display: flex;
-    flex-direction: row;
-    background: white;
-    justify-content: center;
-    align-items: center;
-    -webkit-box-shadow: 0 12px 10px -12px rgba(0, 0, 0, 0.2);
-            box-shadow: 0 12px 10px -12px rgba(0, 0, 0, 0.2);
-}
-
-.logo {
-    padding: 0px;
-    margin: 0px;
-    font-size: 19px;
-    color: rgb(26, 2, 36);
-    margin-right: auto;
-    margin-left: 5vw;
-}
-
-.addCategory {
-    height: 92vh;
-    margin-top: 8vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.addProduct {
-    height: 92vh;
-    margin-top: 8vh;
-}
-
-.navbarItems {
-    padding: 0px;
-    margin: 0px;
-    font-size: 19px;
-    color: rgb(26, 2, 36);
-}
-
-.shoppingMain{
-    height: 92vh;
-    margin-top: 8vh;
-}
-
-.heading {
-    padding: 0px;
-    margin: 0px;
-    font-size: 19px;
-    color: rgb(0, 0, 0, 0.65);
-    font-family: "Brandon Grotesque Medium";
 }
 
 .loader{
@@ -86,7 +15,6 @@
     position: relative;
     margin: 0 auto;
 }
-
 
 .loader:before, .loader:after{
     content: "";
@@ -137,3 +65,88 @@
     align-content: center;
     align-items: center;
 }
+
+/* navbar */
+
+.Nav {
+    width: 100vw;
+    height: 8vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 999;
+}
+
+.navbar{
+    width: 100vw;
+    height: 8vh;
+    font-family: "Brandon Grotesque Medium";
+    display: flex;
+    flex-direction: row;
+    background: white;
+    justify-content: center;
+    align-items: center;
+    -webkit-box-shadow: 0 12px 10px -12px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 12px 10px -12px rgba(0, 0, 0, 0.2);
+}
+
+.navbarItems {
+    padding: 0px;
+    margin: 0px;
+    font-size: 19px;
+    color: rgb(26, 2, 36);
+}
+
+.logo {
+    padding: 0px;
+    margin: 0px;
+    font-size: 19px;
+    color: rgb(26, 2, 36);
+    margin-right: auto;
+    margin-left: 5vw;
+}
+
+/* navbar end */
+
+
+/* Homepage */
+
+.Home {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    margin-top: 0vh;
+    overflow: auto;
+    z-index: 99;
+}
+
+/* home end */
+
+/* add category */
+
+.addCategory {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 9;
+    margin-top: 15vh;
+}
+
+/* add category end */
+
+
+/* add product */
+
+.addProduct {
+    height: auto;
+    display: flex;
+    margin-top: 15vh;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 9;
+    padding-bottom: 10vh;
+}
+
+/* add product end */
+
