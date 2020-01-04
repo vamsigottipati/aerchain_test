@@ -153,12 +153,38 @@ class Home extends Component {
   };
 
   onCheck = checkedKeys => {
-    console.log('onCheck', checkedKeys);
+    // console.log('onCheck', checkedKeys);
+    this.mofidyResults(checkedKeys)
     this.setState({ checkedKeys });
   };
 
+  containsObject(obj, list) {
+    var i;
+    for (i = 0; i < list.length; i++) {
+        if (list[i] === obj) {
+            return true;
+        }
+    }
+    return false;
+  }
+
+  mofidyResults (e) {
+    var temp = []
+    e.forEach(el => {
+      this.state.products.forEach(elp => {
+        if(elp.category.includes(el) && !this.containsObject(elp, temp)) {
+          temp.push(elp)
+        }
+      })
+    })
+    this.setState({
+      filteredProducts: temp
+    })
+    console.log(temp)
+  }
+
   onSelect = (selectedKeys, info) => {
-    console.log('onSelect', info);
+    // console.log('onSelect', info);
     this.setState({ selectedKeys });
   };
 
