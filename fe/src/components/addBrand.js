@@ -47,7 +47,7 @@ class addBrand extends Component {
       <div className="addBrand">
         <div id="loader" className="loader"></div>
         <div id="afterMsg">
-          <p style={{margin: '0px', padding: '0px', paddingBottom: '20px', fontFamily: 'Brandon Grotesque Medium', fontSize: '20px', textAlign: 'center', width: '100vw'}} id="Message">Category Added</p>
+          <p style={{margin: '0px', padding: '0px', paddingBottom: '20px', fontFamily: 'Brandon Grotesque Medium', fontSize: '20px', textAlign: 'center', width: '100vw'}} id="Message">Brand Added</p>
           <Button style={{marginTop: '60px'}} onClick={(e) => this.again(e)} size="large" type="primary">Add  another brand</Button>
         </div>
         <div id="mainCont" style={{alignSelf: 'center', width: '40vw'}}>
