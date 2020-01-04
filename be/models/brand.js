@@ -9,6 +9,10 @@ const brand = new mongoose.Schema({
     name: {
         type: String,
         required: true
+    },
+    name_lower: {
+        type: String,
+        required: true
     }
 })
 

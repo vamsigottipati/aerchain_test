@@ -33,10 +33,11 @@ router.post('/addProduct', (req, res) => {
 });
 
 router.post('/addBrand', (req, res) => {
-    brandModel.find({"name": req.body.name}, (err, docs) => {
+    brandModel.find({"name_lower": req.body.name.toLowerCase()}, (err, docs) => {
         if(docs.length == 0) {
             var d = new brandModel({
-                "name": req.body.name
+                "name": req.body.name,
+                "name_lower": req.body.name.toLowerCase()
             })
             d.save()
             res.send({

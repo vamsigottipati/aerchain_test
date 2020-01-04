@@ -24,7 +24,7 @@ const addProduct = (params) => {
                         "category": params.category,
                         "brand": params.brand
                     })
-                    brandModel.find({"name": params.brand}, (errBrand, brandDocs) => {
+                    brandModel.find({"name_lower": params.brand.toLowerCase()}, (errBrand, brandDocs) => {
                         if(brandDocs.length == 0) {
                             reject({
                                 "status": false,

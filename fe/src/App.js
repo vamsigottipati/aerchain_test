@@ -5,6 +5,8 @@ import Nav from "./components/nav"
 import Home from "./components/home"
 import addCategory from "./components/addCategory"
 import addProduct from "./components/addProduct"
+import addBrand from "./components/addBrand"
+
 
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
@@ -18,6 +20,7 @@ const App = () => (
         <Route path='/' exact component={Home}/>
         <Route path='/addProduct' exact component={addProduct}/>
         <Route path='/addCategory' exact component={addCategory}/>
+        <Route path='/addBrand' exact component={addBrand}/>
       </Switch> 
     </div>
   </Router>

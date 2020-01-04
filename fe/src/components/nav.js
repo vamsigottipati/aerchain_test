@@ -15,6 +15,9 @@ const Nav = () => (
       <Link to="/addProduct" style={{marginRight: '50px', cursor: 'pointer', fontSize: '16px', color: 'rgba(0, 0, 0, 0.65)'}} className="navbarItems">
         Add Products
       </Link>
+      <Link to="/addBrand" style={{marginRight: '50px', cursor: 'pointer', fontSize: '16px', color: 'rgba(0, 0, 0, 0.65)'}} className="navbarItems">
+        Add Brands
+      </Link>
       <Link to="/addCategory" style={{marginRight: '100px', cursor: 'pointer', fontSize: '16px', color: 'rgba(0, 0, 0, 0.65)'}} className="navbarItems">
         Add Categories
       </Link>
