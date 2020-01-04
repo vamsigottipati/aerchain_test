@@ -4,6 +4,10 @@ import { Input } from "antd"
 import { Radio } from 'antd'
 import { Checkbox, Row, Col } from "antd"
 import { Button } from 'antd';
+import { Tree } from 'antd'
+
+const { TreeNode } = Tree
+const treeViewGen = require("./treeViewGen")
 const { Search } = Input;
 
   
@@ -14,7 +18,12 @@ class Home extends Component {
     categories: [],
     filteredProducts: [],
     treeView: [],
-    filteredTreeView: []
+    treeData: [],
+    filteredTreeView: [],
+    expandedKeys: [],
+    autoExpandParent: true,
+    checkedKeys: [],
+    selectedKeys: [],
   }
   search (v) {
     if(v.length) {
@@ -49,7 +58,6 @@ class Home extends Component {
       })
 
       this.getSortedCategories()
-
       document.getElementById("loader").style.display = "none"
       document.getElementById("products").style.display = "flex"
     })
@@ -68,6 +76,7 @@ class Home extends Component {
     }
     return true;
   }
+
 
   addToCat (val) {
     var x = val.target.value
@@ -126,8 +135,44 @@ class Home extends Component {
       this.setState({
         filteredTreeView: this.treeView
       })
+      var xxx = treeViewGen(data)
+      this.setState({
+        treeData: xxx
+      })
     })
   }
+
+  onExpand = expandedKeys => {
+    console.log('onExpand', expandedKeys);
+    // if not set autoExpandParent to false, if children expanded, parent can not collapse.
+    // or, you can remove all expanded children keys.
+    this.setState({
+      expandedKeys,
+      autoExpandParent: false,
+    });
+  };
+
+  onCheck = checkedKeys => {
+    console.log('onCheck', checkedKeys);
+    this.setState({ checkedKeys });
+  };
+
+  onSelect = (selectedKeys, info) => {
+    console.log('onSelect', info);
+    this.setState({ selectedKeys });
+  };
+
+  renderTreeNodes = data =>
+    data.map(item => {
+      if (item.children) {
+        return (
+          <TreeNode title={item.title} key={item.key} dataRef={item}>
+            {this.renderTreeNodes(item.children)}
+          </TreeNode>
+        );
+      }
+      return <TreeNode key={item.key} {...item} />;
+    });
 
   render () {
     return (
@@ -136,7 +181,19 @@ class Home extends Component {
             <aside style={{width: '400px', height: '92vh', overflow: 'auto', boxShadow: '0px 0 0px 0px rgba(0, 0, 0, 0)', background: 'rgb(245, 245, 245)', paddingLeft: '50px', position: 'fixed'}}>
               <Search placeholder="Search for an Item" className="searchBar" onSearch={value => this.search(value)} enterButton />
               <p style={{marginTop: '5vh'}} className="heading">Categories</p>
-              <Radio.Group style={{ width: '100%' }} onChange={val => this.addToCat(val)}>
+                    <Tree
+                      checkable
+                      onExpand={this.onExpand}
+                      expandedKeys={this.state.expandedKeys}
+                      autoExpandParent={this.state.autoExpandParent}
+                      onCheck={this.onCheck}
+                      checkedKeys={this.state.checkedKeys}
+                      onSelect={this.onSelect}
+                      selectedKeys={this.state.selectedKeys}
+                    >
+                      {this.renderTreeNodes(this.state.treeData)}
+                    </Tree>
+              {/* <Radio.Group style={{ width: '100%' }} onChange={val => this.addToCat(val)}>
               {
                 this.state.filteredTreeView.map(el => 
                 (
@@ -146,7 +203,7 @@ class Home extends Component {
                 )  
                 )
               }
-              </Radio.Group>
+              </Radio.Group> */}
               {/* <p style={{marginTop: '5vh'}} className="heading">Sort</p> */}
             </aside>  
             <aside className="productsCont" style={{width: 'calc(100vw - 400px)', marginLeft: '400px'}}>
