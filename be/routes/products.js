@@ -4,6 +4,7 @@ var router = express.Router();
 var productModel = require("../models/products")
 var addProduct = require("../controllers/products/addProduct")
 var categoryModel = require("../models/category")
+var brandModel = require("../models/brand")
 
 router.get('/getProducts', (req, res, next) => {
     productModel.find({}, function (err, docs) {
@@ -17,11 +18,37 @@ router.get('/getCategories', (req, res) => {
     });
 });
 
+router.get('/getBrands', (req, res) => {
+    brandModel.find({}, function (err, docs) {
+        res.send(docs)
+    });
+});
+
 router.post('/addProduct', (req, res) => {
     addProduct(req.body).then(r => {
         res.send(r)
     }).catch(err => {
         res.send(err)
+    })
+});
+
+router.post('/addBrand', (req, res) => {
+    brandModel.find({"name": req.body.name}, (err, docs) => {
+        if(docs.length == 0) {
+            var d = new brandModel({
+                "name": req.body.name
+            })
+            d.save()
+            res.send({
+                "status": true,
+                "msg": "Brand Added"
+            })
+        } else {
+            res.send({
+                "status": false,
+                "msg": "Brand Already Existing"
+            })
+        }
     })
 });
 

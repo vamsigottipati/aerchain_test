@@ -1,6 +1,7 @@
 var categoryModel = require("../../models/category")
 var productModel = require("../../models/products")
 var validateCategory = require("./validateCategory")
+var brandModel = require("../../models/brand")
 
 const addProduct = (params) => {
     return new Promise((resolve, reject) => {
@@ -23,10 +24,19 @@ const addProduct = (params) => {
                         "category": params.category,
                         "brand": params.brand
                     })
-                    d.save()
-                    resolve({
-                        "status": true,
-                        "msg": "Product Added"
+                    brandModel.find({"name": params.brand}, (errBrand, brandDocs) => {
+                        if(brandDocs.length == 0) {
+                            reject({
+                                "status": false,
+                                "msg": "Brand Doesnot exist"
+                            })
+                        } else {
+                            d.save()
+                            resolve({
+                                "status": true,
+                                "msg": "Product Added"
+                            })
+                        }
                     })
                 }).catch(e => {
                     console.log(e)  
