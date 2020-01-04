@@ -155,6 +155,11 @@ class Home extends Component {
   onCheck = checkedKeys => {
     // console.log('onCheck', checkedKeys);
     this.mofidyResults(checkedKeys)
+    if(checkedKeys.length == 0) {
+      this.setState({
+        filteredProducts: this.state.products
+      })
+    }
     this.setState({ checkedKeys });
   };
 
@@ -172,7 +177,8 @@ class Home extends Component {
     var temp = []
     e.forEach(el => {
       this.state.products.forEach(elp => {
-        if(elp.category.includes(el) && !this.containsObject(elp, temp)) {
+        var elp_cat_arr = elp.category.split("/")
+        if(elp_cat_arr.includes(el) && !this.containsObject(elp, temp)) {
           temp.push(elp)
         }
       })
