@@ -29,7 +29,7 @@ class Home extends Component {
     if(v.length) {
       var temp = []
       this.state.products.forEach(el => {
-        if(el.name.toLowerCase().includes(v.toLowerCase()) || el.description.toLowerCase().includes(v.toLowerCase()) || el.category.toLowerCase().includes(v.toLowerCase())) {
+        if(el.name.toLowerCase().includes(v.toLowerCase()) || el.description.toLowerCase().includes(v.toLowerCase()) || el.brand.toLowerCase().includes(v.toLowerCase()) || el.category.toLowerCase().includes(v.toLowerCase())) {
           temp.push(el)
         }
       })
