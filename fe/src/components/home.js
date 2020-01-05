@@ -24,6 +24,7 @@ class Home extends Component {
     autoExpandParent: true,
     checkedKeys: [],
     selectedKeys: [],
+    brands: []
   }
   search (v) {
     if(v.length) {
@@ -60,6 +61,14 @@ class Home extends Component {
       this.getSortedCategories()
       document.getElementById("loader").style.display = "none"
       document.getElementById("products").style.display = "flex"
+    })
+    fetch('http://localhost:5000/getBrands', {
+      method: 'GET'
+    }).then(r => r.json()).then(data => {
+      // console.log(data)
+      this.setState({
+        brands: data
+      })
     })
   }
 
@@ -225,17 +234,18 @@ class Home extends Component {
                     >
                       {this.renderTreeNodes(this.state.treeData)}
                     </Tree>
-              {/* <Radio.Group style={{ width: '100%' }} onChange={val => this.addToCat(val)}>
-              {
-                this.state.filteredTreeView.map(el => 
-                (
-                  <Col key={el.name} style={{marginTop: '15px', marginLeft: el.parents.length*20 + 15 + 'px'}} span={24}>
-                    <Radio value={el.name}>{el.name}</Radio>
-                  </Col>
-                )  
-                )
-              }
-              </Radio.Group> */}
+                  <p style={{marginTop: '5vh'}} className="heading">Brands</p>  
+                  <Radio.Group style={{ width: '100%' }} onChange={val => this.addToCat(val)}>
+                  {
+                    this.state.brands.map(el => 
+                    (
+                      <Col key={el.name} style={{marginTop: '15px'}} span={24}>
+                        <Radio value={el.name}>{el.name}</Radio>
+                      </Col>
+                    )  
+                    )
+                  }
+                  </Radio.Group>
               {/* <p style={{marginTop: '5vh'}} className="heading">Sort</p> */}
             </aside>  
             <aside className="productsCont" style={{width: 'calc(100vw - 400px)', marginLeft: '400px'}}>
