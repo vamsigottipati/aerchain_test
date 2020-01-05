@@ -1,14 +1,20 @@
 import React, {Component} from 'react';
 import '../App.css';
-import { Input } from 'antd'
-import { Radio } from 'antd'
-import { Button } from 'antd';
+import { Input, Radio, Button, Select, Icon } from 'antd'
 
 class addProduct extends Component {
 
   state = {
-    x: [],
-    selectedCat: ""
+    categories: [],
+    selectedCat: "",
+    brands: [],
+    selectedBrand: "",
+    key: "",
+    val: "",
+    specifications: {
+      // "name": "vamsi",
+      // "age": "22"
+    }
   }
 
   componentDidMount() {
@@ -18,7 +24,15 @@ class addProduct extends Component {
     }).then(r => r.json()).then(data => {
       // console.log(data)
       this.setState({
-        x: data,
+        categories: data,
+      })
+    })
+    fetch('http://localhost:5000/getBrands', {
+      method: 'GET'
+    }).then(r2 => r2.json()).then(data2 => {
+      console.log(data2)
+      this.setState({
+        brands: data2
       })
     })
   }
@@ -41,7 +55,7 @@ class addProduct extends Component {
       document.getElementById("mainCont").style.display = "none"
       document.getElementById("loader").style.display = "block"
       
-      this.state.x.forEach(el => {
+      this.state.categories.forEach(el => {
         if(el.name === this.state.selectedCat) {
           val = el.parents
           val.push(el.name)
@@ -68,11 +82,12 @@ class addProduct extends Component {
           body: JSON.stringify({
             "name": document.getElementById("productName").value,
             "category": s,
-            "brand": document.getElementById("productBrand").value,
+            "brand": this.state.selectedBrand,
             "price": document.getElementById("productPrice").value,
             "force": false,
             "quantity": document.getElementById("productQuantity").value,
             "description": document.getElementById("productDescription").value,
+            "specifications": this.state.specifications,
             "img": "No img",
           })
         }).then(r => r.json()).then(resp => {
@@ -97,6 +112,34 @@ class addProduct extends Component {
     window.location.reload()
   }
 
+  removeSpecification (e) {
+    var temp = this.state.specifications
+    delete temp[e]
+    this.setState({specifications: temp})
+  }
+
+  addSpecification () {
+    var key = document.getElementById("specKey").value
+    var val = document.getElementById("specVal").value
+    if(key) {
+      if(val) {
+        if (!Object.keys(this.state.specifications).includes(key)) {
+          var temp = this.state.specifications
+          temp[key] = val
+          this.setState({specifications: temp})
+          this.setState({
+            key: "",
+            val: ""
+          })
+        }
+      } else {
+        alert("Add a specification value")
+      }
+    } else {
+      alert("Add a specification key")
+    }
+  }
+
   render () {
     return (
       <div className="addProduct">
@@ -116,18 +159,38 @@ class addProduct extends Component {
           <Input size="large" min="0" type="number" placeholder="Price of the product" id="productPrice" addonAfter={<i className="fas fa-rupee-sign"></i>} style={{margin: '0px'}} />
 
           <p style={{margin: '0px', padding: '0px', paddingBottom: '20px',paddingTop: '50px', fontFamily: 'Brandon Grotesque Medium', fontSize: '20px'}}>Give a Brand</p> 
-          <Input size="large" placeholder="Brand" id="productBrand" style={{margin: '0px'}} />
+          <Select placeholder="Select a brand" size="large" id="productBrand" onChange={val => this.setState({selectedBrand: val})} style={{width: '20vw'}}>{this.state.brands.map(item => (<Select.Option key={item.name} >{item.name}</Select.Option>))}</Select>
+          {/* <Input size="large" placeholder="Brand" id="productBrand" style={{margin: '0px'}} /> */}
 
           <p style={{margin: '0px', padding: '0px', paddingBottom: '20px',paddingTop: '50px', fontFamily: 'Brandon Grotesque Medium', fontSize: '20px'}}>How many do you want to add</p> 
           <Input size="large" placeholder="Quantity" min="0" type="number" id="productQuantity" style={{margin: '0px'}} />
           
+          <p id="specificationsHead" style={{margin: '0px', padding: '0px', paddingBottom: '20px',paddingTop: '50px', fontFamily: 'Brandon Grotesque Medium', fontSize: '20px'}}>Give specifications</p> 
+          {
+            Object.keys(this.state.specifications).map(el => (
+              <p key={el} style={{fontSize: '17px', margin: '0px', padding: '0px'}} ><Icon type="close-circle" onClick={() => this.removeSpecification(el)} style={{marginRight: '20px', cursor: 'pointer', fontSize: '12px'}}/> {el}: <strong style={{marginLeft: '20px'}}>{this.state.specifications[el]}</strong> </p>
+            ))
+          }
+          <div style={{width: 'auto', background: '#fcfbfb', height: 'auto', border: '1px solid #eee', borderRadius: '5px', display: 'flex', flexDirection: 'column', marginTop: '30px'}}>
+            <div style={{display: 'flex', flexDirection: 'row', background: '#eee'}}>
+              <p style={{flex: '4', padding: '20px', alignSelf: 'center', margin: '0px',paddingLeft: '25px'}}>Name</p>
+              <p style={{flex: '4', padding: '20px', alignSelf: 'center', margin: '0px'}}>Value</p>
+              <div style={{flex: '1'}}></div>
+            </div>
+            <div style={{display: 'flex', flexDirection: 'row', marginTop: '20px'}}> 
+              <Input placeholder="Key" id="specKey" onChange={(val) => this.setState({key: val.target.value})} value={this.state.key} style={{margin: "0px 20px 10px 20px", flex: '4'}} />
+              <Input placeholder="Value" id="specVal" onChange={(val) => this.setState({val: val.target.value})} value={this.state.val} style={{margin: "0px 20px 10px 20px", flex: '4'}}/>
+              <div style={{flex: '1'}}></div>
+            </div>
+            <Button style={{marginLeft: '20px', marginRight: 'auto', marginBottom: '20px'}} onClick={() => this.addSpecification()}> Add </Button>
+          </div>
 
           <p  style={{margin: '0px', padding: '0px', paddingBottom: '0px', paddingTop: '50px', fontFamily: 'Brandon Grotesque Medium', fontSize: '20px'}}>Select a Category</p>
           <div style={{width: '40vw', height: 'auto', borderRadius: '5px', display:'flex', flexDirection: 'row', justifyContent: 'flex-start', marginTop: '20px'}}> 
             <Radio.Group name="rootCategory" id="buttonGroup" defaultValue="None" onChange={(e) => this.changeCat(e)} buttonStyle="solid">
               <Radio.Button value="None" style={{margin: '5px', flex: '1'}} >None</Radio.Button>
               {
-                this.state.x.map(el => 
+                this.state.categories.map(el => 
                   (<Radio.Button value={el.name} style={{margin: '5px', flex: '1'}} >{el.name}</Radio.Button> )
                 )
               }

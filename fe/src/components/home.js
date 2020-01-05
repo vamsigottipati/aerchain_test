@@ -240,7 +240,7 @@ class Home extends Component {
             </aside>  
             <aside className="productsCont" style={{width: 'calc(100vw - 400px)', marginLeft: '400px'}}>
               {
-                !this.state.filteredProducts.length && <p style={{fontSize: '26px', width: '100%',textAlign: 'center', marginTop: '15vh'}}>Applied Filters gave no results</p>
+                !this.state.filteredProducts.length && <p style={{fontSize: '26px', width: '100%',textAlign: 'center', marginTop: '15vh'}}>No products available</p>
               }
               <div style={{marginTop: 'calc(50vh - 100px)', alignSelf: 'center'}} id="loader" className="loader"></div>
               <div id="products" className="products">

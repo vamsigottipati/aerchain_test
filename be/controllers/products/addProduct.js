@@ -22,7 +22,8 @@ const addProduct = (params) => {
                         "price": params.price,
                         "quantity": params.quantity,
                         "category": params.category,
-                        "brand": params.brand
+                        "brand": params.brand,
+                        "specifications": params.specifications
                     })
                     brandModel.find({"name_lower": params.brand.toLowerCase()}, (errBrand, brandDocs) => {
                         if(brandDocs.length == 0) {
